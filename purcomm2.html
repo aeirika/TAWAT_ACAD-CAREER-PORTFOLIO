@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Erika Shane Tawat | Engineering Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#050816;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* BACKGROUND */
+
+body::before{
+    content:'';
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:
+    radial-gradient(circle at top left,#1e3a8a 0%,transparent 35%),
+    radial-gradient(circle at bottom right,#2563eb 0%,transparent 35%);
+    z-index:-1;
+}
+
+/* NAVBAR */
+
+nav{
+    width:100%;
+    padding:22px 8%;
+    position:fixed;
+    top:0;
+    left:0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(5,8,22,0.75);
+    backdrop-filter:blur(12px);
+    z-index:999;
+    border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.logo{
+    font-size:24px;
+    font-weight:700;
+    color:#60a5fa;
+}
+
+nav ul{
+    display:flex;
+    gap:30px;
+    list-style:none;
+}
+
+nav ul li a{
+    text-decoration:none;
+    color:white;
+    font-size:14px;
+    transition:0.3s;
+    position:relative;
+}
+
+nav ul li a::after{
+    content:'';
+    position:absolute;
+    width:0%;
+    height:2px;
+    background:#60a5fa;
+    left:0;
+    bottom:-6px;
+    transition:0.3s;
+}
+
+nav ul li a:hover::after{
+    width:100%;
+}
+
+nav ul li a:hover{
+    color:#60a5fa;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding:120px 8% 60px;
+}
+
+.hero-container{
+    width:100%;
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:70px;
+    align-items:center;
+}
+
+.hero-text h3{
+    color:#60a5fa;
+    margin-bottom:15px;
+    font-size:22px;
+}
+
+.hero-text h1{
+    font-size:78px;
+    line-height:1;
+    margin-bottom:25px;
+}
+
+.hero-text p{
+    color:#cbd5e1;
+    line-height:1.9;
+    max-width:650px;
+    margin-bottom:40px;
+    font-size:15px;
+}
+
+.btn-group{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:15px 32px;
+    border-radius:14px;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.3s;
+    display:inline-block;
+}
+
+.primary{
+    background:#2563eb;
+    color:white;
+}
+
+.primary:hover{
+    background:#1d4ed8;
+    transform:translateY(-4px);
+    box-shadow:0 10px 25px rgba(37,99,235,0.35);
+}
+
+.secondary{
+    border:1px solid #60a5fa;
+    color:#60a5fa;
+}
+
+.secondary:hover{
+    background:#60a5fa;
+    color:white;
+    transform:translateY(-4px);
+}
+
+/* PROFILE CARD */
+
+.profile-card{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    padding:42px;
+    border-radius:30px;
+    backdrop-filter:blur(12px);
+    transition:0.3s;
+}
+
+.profile-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 0 35px rgba(96,165,250,0.15);
+}
+
+.profile-card h2{
+    margin-bottom:32px;
+    color:#60a5fa;
+}
+
+.profile-item{
+    margin-bottom:24px;
+}
+
+.profile-item span{
+    color:#94a3b8;
+    font-size:13px;
+}
+
+.profile-item h4{
+    margin-top:7px;
+    font-weight:500;
+}
+
+/* SECTIONS */
+
+section{
+    padding:100px 8%;
+}
+
+.section-title{
+    text-align:center;
+    font-size:50px;
+    margin-bottom:65px;
+}
+
+.section-title span{
+    color:#60a5fa;
+}
+
+/* PROJECTS */
+
+.projects{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
+    gap:30px;
+}
+
+.project-card{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:28px;
+    overflow:hidden;
+    transition:0.4s;
+    position:relative;
+}
+
+.project-card::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        135deg,
+        rgba(96,165,250,0.12),
+        transparent
+    );
+    opacity:0;
+    transition:0.4s;
+    pointer-events:none;
+}
+
+.project-card:hover::before{
+    opacity:1;
+}
+
+.project-card:hover{
+    transform:translateY(-10px);
+    border-color:#60a5fa;
+    box-shadow:0 0 35px rgba(96,165,250,0.18);
+}
+
+.project-image{
+    height:190px;
+    background:linear-gradient(135deg,#1e3a8a,#2563eb);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    font-weight:700;
+    transition:0.4s;
+    position:relative;
+    z-index:1;
+}
+
+.project-card:hover .project-image{
+    transform:scale(1.05);
+}
+
+.project-content{
+    padding:30px;
+    position:relative;
+    z-index:2;
+}
+
+.project-content h3{
+    margin-bottom:15px;
+    color:#60a5fa;
+}
+
+.project-content p{
+    color:#cbd5e1;
+    line-height:1.9;
+    font-size:14px;
+    margin-bottom:25px;
+}
+
+/* SKILLS */
+
+.skills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+    justify-content:center;
+}
+
+.skill{
+    padding:14px 22px;
+    background:#111c44;
+    border:1px solid #2563eb;
+    border-radius:50px;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.skill:hover{
+    background:#2563eb;
+    transform:translateY(-3px);
+}
+
+/* RESUME */
+
+.resume-section{
+    max-width:900px;
+    margin:auto;
+    text-align:center;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    padding:65px;
+    border-radius:30px;
+}
+
+.resume-section h2{
+    margin-bottom:20px;
+    color:#60a5fa;
+}
+
+.resume-section p{
+    color:#cbd5e1;
+    line-height:1.9;
+    margin-bottom:35px;
+}
+
+/* COVER LETTER */
+
+.cover{
+    max-width:1050px;
+    margin:auto;
+    background:rgba(255,255,255,0.05);
+    padding:55px;
+    border-radius:30px;
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+.cover p{
+    line-height:2;
+    color:#dbe4f0;
+    margin-bottom:20px;
+}
+
+/* FOOTER */
+
+footer{
+    padding:45px;
+    text-align:center;
+    color:#94a3b8;
+    border-top:1px solid rgba(255,255,255,0.08);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:950px){
+
+.hero-container{
+    grid-template-columns:1fr;
+}
+
+.hero-text h1{
+    font-size:54px;
+}
+
+nav{
+    flex-direction:column;
+    gap:18px;
+}
+
+nav ul{
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">EST Portfolio</div>
+
+    <ul>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#resume">Resume</a></li>
+        <li><a href="#cover">Cover Letter</a></li>
+    </ul>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-container">
+
+        <div class="hero-text">
+
+            <h3>Electronics Engineering Student</h3>
+
+            <h1>
+                Building Robotics,
+                Electronics,
+                and Future Technology
+            </h1>
+
+            <p>
+                Passionate about robotics, embedded systems,
+                communications engineering, automation,
+                and innovative technology solutions.
+            </p>
+
+            <div class="btn-group">
+
+                <a href="#projects" class="btn primary">
+                    Explore Projects
+                </a>
+
+                <a href="https://drive.google.com/drive/folders/1akQsr3tyWBXYtH9CFvVum5QrJatERPak?usp=sharing"
+                   target="_blank"
+                   class="btn secondary">
+                    Full Engineering Portfolio
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="profile-card">
+
+            <h2>About Me</h2>
+
+            <div class="profile-item">
+                <span>Name</span>
+                <h4>Erika Shane D. Tawat</h4>
+            </div>
+
+            <div class="profile-item">
+                <span>University</span>
+                <h4>Polytechnic University of the Philippines</h4>
+            </div>
+
+            <div class="profile-item">
+                <span>Course</span>
+                <h4>BS Electronics Engineering</h4>
+            </div>
+
+            <div class="profile-item">
+                <span>Focus</span>
+                <h4>Robotics • Embedded Systems • Communications</h4>
+            </div>
+
+            <div class="profile-item">
+                <span>Email</span>
+                <h4>tawaterikashane@gmail.com</h4>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PROJECTS -->
+
+<section id="projects">
+
+    <h2 class="section-title">
+        Featured <span>Projects</span>
+    </h2>
+
+    <div class="projects">
+
+        <div class="project-card">
+
+            <div class="project-image">
+                ROBOTICS
+            </div>
+
+            <div class="project-content">
+
+                <h3>Automated Forklift Robot</h3>
+
+                <p>
+                    Developed an automated forklift robot integrating
+                    feedback systems and automation technologies.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="project-card">
+
+            <div class="project-image">
+                UAV
+            </div>
+
+            <div class="project-content">
+
+                <h3>Rescue Drone</h3>
+
+                <p>
+                    Designed and developed an unmanned aerial vehicle
+                    for emergency response and rescue applications.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="project-card">
+
+            <div class="project-image">
+                6DOF
+            </div>
+
+            <div class="project-content">
+
+                <h3>6DOF Robotic Arm</h3>
+
+                <p>
+                    Assisted in testing, calibration,
+                    and mechanical design for robotic systems.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="project-card">
+
+            <div class="project-image">
+                RF
+            </div>
+
+            <div class="project-content">
+
+                <h3>FM & AM Modulation Circuits</h3>
+
+                <p>
+                    Built and analyzed communication circuits
+                    demonstrating signal transmission concepts.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PORTFOLIO -->
+
+<section id="portfolio">
+
+    <h2 class="section-title">
+        My <span>Portfolio</span>
+    </h2>
+
+    <div class="projects">
+
+        <div class="project-card">
+
+            <div class="project-image">
+                ENGINEERING
+            </div>
+
+            <div class="project-content">
+
+                <h3>Main Engineering Portfolio</h3>
+
+                <p>
+                    Robotics projects, embedded systems,
+                    electronics designs, and engineering works.
+                </p>
+
+                <a href="https://drive.google.com/drive/folders/1akQsr3tyWBXYtH9CFvVum5QrJatERPak?usp=sharing"
+                   target="_blank"
+                   class="btn primary">
+                    Open Portfolio
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="project-card">
+
+            <div class="project-image">
+                WRITINGS
+            </div>
+
+            <div class="project-content">
+
+                <h3>Academic Writings</h3>
+
+                <p>
+                    Collection of technical papers,
+                    engineering research,
+                    and academic documentation.
+                </p>
+
+                <a href="https://drive.google.com/drive/folders/1aeOBda5o9eRIh4__EfhQ2IIzYa8iL0An?usp=drive_link"
+                   target="_blank"
+                   class="btn primary">
+                    View Writings
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="project-card">
+
+            <div class="project-image">
+                CERTS
+            </div>
+
+            <div class="project-content">
+
+                <h3>Certificates & Achievements</h3>
+
+                <p>
+                    Professional certificates,
+                    seminars, workshops,
+                    and accomplishments.
+                </p>
+
+                <a href="https://drive.google.com/drive/folders/1al57Amo4JCxNYMsGUoTbjX6jnXi3dviA?usp=drive_link"
+                   target="_blank"
+                   class="btn primary">
+                    View Certificates
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="project-card">
+
+            <div class="project-image">
+                DESIGNS
+            </div>
+
+            <div class="project-content">
+
+                <h3>Creative Designs</h3>
+
+                <p>
+                    Graphic designs,
+                    multimedia concepts,
+                    and creative outputs.
+                </p>
+
+                <a href="https://drive.google.com/drive/folders/1an1AVsdcLWWxTo6SpH4RKhstWmGu0bjS?usp=drive_link"
+                   target="_blank"
+                   class="btn primary">
+                    Explore Designs
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SKILLS -->
+
+<section id="skills">
+
+    <h2 class="section-title">
+        Technical <span>Skills</span>
+    </h2>
+
+    <div class="skills">
+
+        <div class="skill">PCB Designing</div>
+        <div class="skill">Robotics</div>
+        <div class="skill">Embedded Systems</div>
+        <div class="skill">Python</div>
+        <div class="skill">C++</div>
+        <div class="skill">MATLAB</div>
+        <div class="skill">LTSpice</div>
+        <div class="skill">AutoCAD</div>
+        <div class="skill">3D Modeling</div>
+        <div class="skill">Cisco Networking</div>
+        <div class="skill">Circuit Simulation</div>
+        <div class="skill">Instrumentation</div>
+        <div class="skill">Soldering</div>
+        <div class="skill">Troubleshooting</div>
+
+    </div>
+
+</section>
+
+<!-- RESUME -->
+
+<section id="resume">
+
+    <div class="resume-section">
+
+        <h2>Resume & Curriculum Vitae</h2>
+
+        <p>
+            View my complete curriculum vitae containing
+            educational background, internships,
+            leadership experiences,
+            and technical competencies.
+        </p>
+
+        <a href="Tawat_PURCOMM.pdf"
+           target="_blank"
+           class="btn primary">
+            Open CV
+        </a>
+
+    </div>
+
+</section>
+
+<!-- COVER LETTER -->
+
+<section id="cover">
+
+    <h2 class="section-title">
+        Cover <span>Letter</span>
+    </h2>
+
+    <div class="cover">
+
+        <p>
+            Dear Ma'am/Sir,
+        </p>
+
+        <p>
+            I am writing to express my interest in opportunities within your company where I can contribute my knowledge, technical skills, and passion for engineering innovation. I am currently pursuing a Bachelor of Science in Electronics Engineering at the Polytechnic University of the Philippines and have developed a strong foundation in electronics, robotics, communications systems, embedded technology, and instrumentation.
+        </p>
+
+        <p>
+            Through my academic projects, leadership roles, and internship experiences, I have gained valuable hands-on experience in system development, circuit design, troubleshooting, automation, and technical collaboration. My involvement with organizations and engineering projects has strengthened my ability to adapt quickly, work effectively within teams, and manage responsibilities in fast-paced environments.
+        </p>
+
+        <p>
+            During my internship experiences, I contributed to robotics development, testing and calibration processes, 3D modeling, communication system concepts, and technical documentation. These experiences enhanced both my technical competencies and problem-solving abilities while reinforcing my commitment to continuous learning and professional growth.
+        </p>
+
+        <p>
+            I am eager to apply my skills in a professional environment where I can further expand my engineering knowledge while contributing meaningful solutions and innovative ideas to your team.
+        </p>
+
+        <p>
+            Thank you for considering my application. I would welcome the opportunity to further discuss how my background and experiences can contribute to your organization.
+        </p>
+
+        <p>
+            Sincerely,<br>
+            Erika Shane D. Tawat
+        </p>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+    © 2026 Erika Shane D. Tawat — Academic/Career Portfolio
+
+</footer>
+
+</body>
+</html>
